@@ -10,11 +10,8 @@
 
 
 
-
-
-
-
 class PaiPaiHFInstrument:
+
 
 	def __init__(self,unique_id,fund_id):
 
@@ -23,14 +20,13 @@ class PaiPaiHFInstrument:
 		self.fund_id = fund_id
 		self.store_list = []
 
-	def _update_store_list(store_list,new_store_name):
+	def _update_store_list(self,new_store_name):
 
-		if new_store_name not in store_list:
-			store_list.append(new_store_name)
+		if new_store_name not in self.store_list:
+			self.store_list.append(new_store_name)
 		else:
 			print(new_store_name+" has been updated before.")
-		
-		return store_list
+
 
 	############################################################
 	################ Store Data Methods ########################
@@ -39,32 +35,32 @@ class PaiPaiHFInstrument:
 
 	def store_asset_size(self,asset_size):
 
-		self.store_list = _update_store_list(self.store_list,"asset_size")
+		self._update_store_list("asset_size")
 
 
 		self.asset_size_storage = asset_size
 
 	def store_nav(self,nav):
 
-		self.store_list = _update_store_list(self.store_list,"nav")
+		self._update_store_list("nav")
 
 		self.nav = nav
 
 	def store_personnel_info(self,personnel):
 
-		self.store_list = _update_store_list(self.store_list,"personnel")
+		self._update_store_list("personnel")
 
 		self.personnel = personnel
 
 	def store_strategy(self,strategy):
 
-		self.store_list = _update_store_list(self.store_list,"strategy")
+		self._update_store_list("strategy")
 
 		self.strategy = strategy
 
 	def store_attribute(self,attribute):
 
-		self.store_list = _update_store_list(self.store_list,"attribute")
+		self._update_store_list("attribute")
 
 		self.attribute = attribute
 
@@ -168,6 +164,30 @@ class AttributeStorage(GeneralFeatureStorage):
 		self.pro_class_m = None 
 		self.pro_class_s = None
 		self.creatorid = None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
