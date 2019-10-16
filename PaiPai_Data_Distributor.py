@@ -5,7 +5,7 @@ class DistributorController:
 
 	def __init__(self,fund_id_list):
 		"""
-
+        Initialize the distributor controller with fund_id_list
 		:param fund_id_list:
 		"""
 		self.fund_id_list = fund_id_list
