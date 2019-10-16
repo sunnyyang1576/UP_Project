@@ -1,33 +1,42 @@
-
-
-
 from PaiPai_Data_Storage import (PaiPaiHFInstrument,
-	AssetSizeStorage,NAVStorage,StrategyStorage,AttributeStorage)
-
-
-
-
-
+								 AssetSizeStorage,NAVStorage,StrategyStorage,AttributeStorage)
 
 class DistributorController:
 
 	def __init__(self,fund_id_list):
-
-
+		"""
+        Initialize the distributor controller with fund_id_list
+		:param fund_id_list:
+		"""
 		self.fund_id_list = fund_id_list
 		self.storage_dict = {}
 
+		self.create_empty_HF_storage_instrument()
+		# maybe we will consider to create_empty_HF_storage_instrument here, since next function
+		# doesn't give any extra parameters, then do we still need "fund_id_list"? it seems like
+		# self.fund_id_list is equivalent to the keys of self.storage_dict, so maybe we only need to
+		# store the dictionary?
+		# uncomment the following if you feel like to, and we could delete the "create_empty_HF_storage_instrument"
+		# method.
+
+		self.storage_dict = {}
+
+		for fund_id in self.fund_id_list:
+			self.storage_dict[fund_id] = PaiPaiHFInstrument(unique_id=None, fund_id=fund_id)
 
 	def create_empty_HF_storage_instrument(self):
 
-		# initialize empty PaiPaiHFInstrument and assigne them to storage_dict
+		# initialize empty PaiPaiHFInstrument and assign them to storage_dict
 
 		for fund_id in self.fund_id_list:
 
-			self.storage_dict[fund_id] = PaiPaiHFInstrument(unique_id=None,fund_id=fund_id)
+			self.storage_dict[fund_id] = PaiPaiHFInstrument(unique_id=None, fund_id=fund_id)
+
+			# print for testing issues? maybe we need to consider comment it out since it will have
+			# a lot of messy outputs when we are trying to register all the instruments into our
+			# collector
 			print(fund_id+" is created.")
 		print("All empty storage are created.")
-
 
 
 	def distribute_asset_size(self,df,update_time):

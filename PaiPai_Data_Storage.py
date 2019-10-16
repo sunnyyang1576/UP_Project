@@ -1,26 +1,39 @@
-
-
-
-
-
-
-
-
-
-
-
-
 class PaiPaiHFInstrument:
+	"""
+	HedgeFund which are using PaiPai information.
+	"""
 
-
-	def __init__(self,unique_id,fund_id):
-
+	def __init__(self, unique_id, fund_id):
+		"""Initialize the Hedge Fund
+		## question: what's the differences between unique_id and fund_id?
+		## could you also please update all the data types and maybe some describtion?
+		:param unique_id: int
+		:param fund_id: int
+		:param asset_size_storage
+		:param nav
+		:param personnel
+		:param strategy
+		:param attribute
+		"""
 
 		self.unique_id = unique_id
 		self.fund_id = fund_id
+
+		# maybe we
 		self.store_list = []
 
-	def _update_store_list(self,new_store_name):
+		# will be better if we initialize all the attributes here
+		# then it will reduce the errors when you are trying to call
+		# those attributes. (Since the store_... functions below updates
+		# the attributes)
+		self.asset_size_storage = None
+		self.nav = None
+		self.personnel = None
+		self.strategy = None
+		self.attribute = None
+
+	# maybe we don't need the store_list? other attribute will perform the storage task?
+	def _update_store_list(self, new_store_name):
 
 		if new_store_name not in self.store_list:
 			self.store_list.append(new_store_name)
@@ -33,20 +46,19 @@ class PaiPaiHFInstrument:
 	############################################################
 
 
-	def store_asset_size(self,asset_size):
+	def store_asset_size(self, asset_size):
 
 		self._update_store_list("asset_size")
 
-
 		self.asset_size_storage = asset_size
 
-	def store_nav(self,nav):
+	def store_nav(self, nav):
 
 		self._update_store_list("nav")
 
 		self.nav = nav
 
-	def store_personnel_info(self,personnel):
+	def store_personnel_info(self, personnel):
 
 		self._update_store_list("personnel")
 
@@ -65,6 +77,26 @@ class PaiPaiHFInstrument:
 		self.attribute = attribute
 
 
+	def get_asset_size(self):
+
+		return self.asset_size_storage
+
+	def store_nav(self):
+
+		return self.nav
+
+	def store_personnel_info(self):
+
+		return self.personal
+
+	def store_strategy(self):
+
+		return self.strategy
+
+	def store_attribute(self):
+
+		return self.attribute
+
 
 
 
@@ -76,8 +108,6 @@ class GeneralFeatureStorage:
 		self.fund_id = fund_id
 		self.update_time = update_time
 		self.update_flag = update_flag
-
-
 
 
 
