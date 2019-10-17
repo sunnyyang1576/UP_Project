@@ -1,3 +1,4 @@
+
 class PaiPaiHFInstrument:
 	"""
 	HedgeFund which are using PaiPai information.
@@ -5,34 +6,30 @@ class PaiPaiHFInstrument:
 
 	def __init__(self, unique_id, fund_id):
 		"""Initialize the Hedge Fund
-		## question: what's the differences between unique_id and fund_id?
-		## could you also please update all the data types and maybe some describtion?
+
 		:param unique_id: int
-		:param fund_id: int
-		:param asset_size_storage
-		:param nav
-		:param personnel
-		:param strategy
-		:param attribute
+		:param fund_id: str
+		:param asset_size_storage: AssetSizeStorage
+		:param nav: NavStorage
+		:param personnel: PersonnelStorage
+		:param strategy: StaticStorage
+		:param attribute: StaticStorage
 		"""
 
 		self.unique_id = unique_id
 		self.fund_id = fund_id
 
-		# maybe we
+
 		self.store_list = []
 
-		# will be better if we initialize all the attributes here
-		# then it will reduce the errors when you are trying to call
-		# those attributes. (Since the store_... functions below updates
-		# the attributes)
+
 		self.asset_size_storage = None
 		self.nav = None
 		self.personnel = None
 		self.strategy = None
 		self.attribute = None
 
-	# maybe we don't need the store_list? other attribute will perform the storage task?
+
 	def _update_store_list(self, new_store_name):
 
 		if new_store_name not in self.store_list:
@@ -52,7 +49,7 @@ class PaiPaiHFInstrument:
 
 		self.asset_size_storage = asset_size
 
-	def store_nav(self, nav):
+	def store_nav(self,nav):
 
 		self._update_store_list("nav")
 
@@ -75,28 +72,6 @@ class PaiPaiHFInstrument:
 		self._update_store_list("attribute")
 
 		self.attribute = attribute
-
-
-	def get_asset_size(self):
-
-		return self.asset_size_storage
-
-	def store_nav(self):
-
-		return self.nav
-
-	def store_personnel_info(self):
-
-		return self.personal
-
-	def store_strategy(self):
-
-		return self.strategy
-
-	def store_attribute(self):
-
-		return self.attribute
-
 
 
 

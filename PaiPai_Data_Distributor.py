@@ -6,42 +6,25 @@ class DistributorController:
 	def __init__(self,fund_id_list):
 		"""
         Initialize the distributor controller with fund_id_list
-		:param fund_id_list:
+		
+		:param fund_id_list: list(str)
 		"""
 		self.fund_id_list = fund_id_list
 		self.storage_dict = {}
 
-		self.create_empty_HF_storage_instrument()
-		# maybe we will consider to create_empty_HF_storage_instrument here, since next function
-		# doesn't give any extra parameters, then do we still need "fund_id_list"? it seems like
-		# self.fund_id_list is equivalent to the keys of self.storage_dict, so maybe we only need to
-		# store the dictionary?
-		# uncomment the following if you feel like to, and we could delete the "create_empty_HF_storage_instrument"
-		# method.
-
-		self.storage_dict = {}
-
 		for fund_id in self.fund_id_list:
 			self.storage_dict[fund_id] = PaiPaiHFInstrument(unique_id=None, fund_id=fund_id)
 
-	def create_empty_HF_storage_instrument(self):
 
-		# initialize empty PaiPaiHFInstrument and assign them to storage_dict
-
-		for fund_id in self.fund_id_list:
-
-			self.storage_dict[fund_id] = PaiPaiHFInstrument(unique_id=None, fund_id=fund_id)
-
-			# print for testing issues? maybe we need to consider comment it out since it will have
-			# a lot of messy outputs when we are trying to register all the instruments into our
-			# collector
-			print(fund_id+" is created.")
-		print("All empty storage are created.")
 
 
 	def distribute_asset_size(self,df,update_time):
+		"""
+		This function is used to distribute the asset size dataframe into the corresponding hedge fund storage instrument
 
-		# initialize this distributor and update the df
+		:param update_time: str
+		"""
+
 		asset_distributor = AssetSizeDistributor(self.fund_id_list,update_time,df)
 
 		for fund_id in self.fund_id_list:
@@ -53,6 +36,12 @@ class DistributorController:
 
 
 class SingleDistributor:
+	"""
+	This is the general distributor class. The general distributor takes in a dataframe and fund_id
+	It then dissembles the dataframe based on the fund id, and it assignes the separate dataframe into
+	the corresponding hedge fund storage instrument.
+
+	"""
 
 	def __init__(self,fund_id_list,update_time,df):
 
@@ -77,7 +66,10 @@ class SingleDistributor:
 
 
 class AssetSizeDistributor(SingleDistributor):
+	"""
+	This distributor is used to distribute the asset size dataframe into the corresponding hedge fund storage.
 
+	"""
 
 	def __init__(self,fund_id_list,update_time,df):
 
@@ -104,8 +96,6 @@ class AssetSizeDistributor(SingleDistributor):
 										date=date,
 										asset_size_series=series)
 		return temp_storage
-
-
 
 
 
