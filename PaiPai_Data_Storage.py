@@ -2,6 +2,7 @@
 class PaiPaiHFInstrument:
 	"""
 	HedgeFund which are using PaiPai information.
+	This is interesting
 	"""
 
 	def __init__(self, unique_id, fund_id):
@@ -166,61 +167,6 @@ class AttributeStorage(GeneralFeatureStorage):
 		self.multi_advisor = None
 		self.fee_class_a = None
 		self.fee_class_other = None
-		self.pro_class_m = None 
+		self.pro_class_m = None
 		self.pro_class_s = None
 		self.creatorid = None
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
